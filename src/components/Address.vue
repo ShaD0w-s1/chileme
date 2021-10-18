@@ -22,9 +22,9 @@ export default {
 @import '../style/viriables.scss';
 .address {
   position: relative;
-  margin: .16rem .18rem 0 .18rem;
+  margin: .18rem;
   padding: .18rem .64rem .18rem .16rem;
-  background: #FFF;
+  background: $bgColor;
   border-radius: .04rem;
   &__info {
     display: flex;

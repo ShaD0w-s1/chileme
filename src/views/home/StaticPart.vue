@@ -1,8 +1,10 @@
 <template>
   <div class="position">
-    <span class="iconfont position__icon">&#xe619;</span>
-    北京理工大学国防科技园2号楼10层
-    <span class="iconfont position_notice">&#xe60b;</span>
+    <router-link :to = "{name:'MyAddressList'}">
+      <span class="iconfont position__icon">&#xe619;</span>
+     {{position}}
+      <span class="iconfont position_notice">&#xe60b;</span>
+    </router-link>
   </div>
   <div class="search">
     <span class="iconfont">&#xe62d;</span>
@@ -31,9 +33,13 @@
 </template>
 
 <script>
+import { getPositionEffect } from '@/effects/positionEffect'
+
 export default {
   name: 'StaticPart',
   setup() {
+    const { position } = getPositionEffect()
+
     const iconsList = [
       { imgName: "超市", desc: "超市便利"},
       { imgName: "菜市场", desc: "菜市场"},
@@ -46,7 +52,7 @@ export default {
       { imgName: "大牌免运", desc: "大牌免运"},
       { imgName: "红包", desc: "红包套餐"},
     ]
-    return { iconsList }
+    return { iconsList, position }
   }
 }
 </script>
@@ -59,6 +65,7 @@ export default {
   padding: .16rem .24rem .16rem 0;
   line-height: .22rem;
   font-size: .16rem;
+  color: #000;
   @include ellipsis;
   .position__icon {
     position: relative;
