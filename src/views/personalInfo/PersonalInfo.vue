@@ -19,14 +19,12 @@
     </div>
     <div class="logout" @click="handleLogout">退出登陆</div>
   </div>
-  <Docker :currentIndex="3"/>
 </template>
 
 <script>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { get } from '../../utils/request'
-import Docker from '../../components/Docker'
 
 const useUserEffect = () => {
   const userInfo = reactive({ _id: '', username: '' })
@@ -44,7 +42,6 @@ const useUserEffect = () => {
 
 export default {
   name: 'PersonalInfo',
-  components: { Docker },
   setup() {
     const router = useRouter()
     const handleLogout = () => {

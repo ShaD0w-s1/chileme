@@ -84,7 +84,7 @@ const useCartEffect = () => {
   const store = useStore()
   const { cartList, changeCartItemInfo } = useCommonCartEffect()
   const changeShopName = (shopId, shopName) => {
-    store.commit('changeShopName', { shopId, shopName })
+    store.commit('CartList/changeShopName', { shopId, shopName })
   }
   const changeCartItem = (shopId, productId, item, num, shopName) => {
     changeCartItemInfo(shopId, productId, item, num)

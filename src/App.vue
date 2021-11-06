@@ -2,11 +2,26 @@
   <router-view />
 </template>
 
-<script>
-export default {
-  name: 'App',
+<script lang="ts">
+import { defineComponent, watch } from 'vue'
+
+const watchChange = () => {
+  const width = window.innerWidth
+  const Height = window.innerHeight
+  const change = watch([width,Height],(newValues, prevValues)=>{
+    console.log(newValues, prevValues)
+  })
+  return { change }
 }
+
+export default defineComponent({
+  setup() {
+    const { change } = watchChange()
+    return { change }
+  },
+})
 </script>
+
 
 <style lang="scss">
  a {

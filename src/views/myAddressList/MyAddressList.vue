@@ -3,10 +3,7 @@
     
     <div class="shell">
       <div class='title'>
-        <div
-        class="iconfont title__back"
-        @click="handleBackClick"
-        >&#xe6f2;</div>
+        <Back class="title__back" />
         <div class="title__text">管理收货地址</div>
         <div class="title__add" @click="handleAddClick">新建</div>
       </div>
@@ -28,17 +25,20 @@
 </template>
 
 <script>
-import Position from '../../components/position'
-import Address from '../../components/Address'
-import useCommonAddressEffect from '../../effects/addressEffect'
-
 import { toRefs } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
+import Position from '../../components/position'
+import Address from '../../components/Address'
+import useCommonAddressEffect from '../../effects/addressEffect'
+import Back from '@/components/Back'
+
+
+
 export default {
   name: 'MyAddressList',
-  components: { Address, Position },
+  components: { Address, Position, Back },
   setup() {
     const store = useStore()
     const router = useRouter()

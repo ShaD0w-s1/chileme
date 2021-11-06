@@ -90,15 +90,15 @@ const useCartEffect = (shopId) => {
     } = useCommonCartEffect(shopId)
 
     const changeCartItemChecked = (shopId, productId) => {
-      store.commit('changeCartItemChecked', {shopId, productId})
+      store.commit('CartList/changeCartItemChecked', {shopId, productId})
     }
 
     const cleanCartProducts = (shopId) => {
-      store.commit('cleanCartProducts', { shopId })
+      store.commit('CartList/cleanCartProducts', { shopId })
     }
 
     const setCartItemsChecked = (shopId) => {
-      store.commit('setCartItemsChecked', { shopId })
+      store.commit('CartList/setCartItemsChecked', { shopId })
     }
 
     return {

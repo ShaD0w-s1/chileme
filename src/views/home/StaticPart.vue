@@ -6,10 +6,9 @@
       <span class="iconfont position_notice">&#xe60b;</span>
     </router-link>
   </div>
-  <div class="search">
-    <span class="iconfont">&#xe62d;</span>
-    <span class="search__text">山姆会员商店优惠商品</span>
-  </div>
+  <router-link :to = "{name:'ShopSerach'}">
+    <van-search class="search" placeholder="请输入搜索关键词" shape="round" disabled />
+  </router-link>
   <div class="banner">
     <img
       class="banner__img"
@@ -35,8 +34,15 @@
 <script>
 import { getPositionEffect } from '@/effects/positionEffect'
 
+import 'vant/es/search/style'
+
+import Search from 'vant/es/search'
+
 export default {
   name: 'StaticPart',
+  components: {
+    [Search.name]: Search
+  },
   setup() {
     const { position } = getPositionEffect()
 
@@ -81,11 +87,10 @@ export default {
   color: $content-fontcolor;
 }
 .search {
+  padding: 0;
+  padding-left: 0;
   margin-bottom: .12rem;
-  line-height: .32rem;
-  background: $search-bgColor;
   color: $search-fontColor;
-  border-radius: .16rem;
   .iconfont {
     display: inline-block;
     padding: 0 .08rem 0 .16rem;

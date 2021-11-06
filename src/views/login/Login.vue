@@ -19,36 +19,45 @@
     </div>
     <div class="wrapper__login-button" @click="handleLogin">登陆</div>
     <div class="wrapper__login-link" @click="handleRegisterClick">立即注册</div>
-    <Toast v-if="show" :message="toastMessage"/>
   </div>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
+<script lang="ts">
+import { reactive, toRefs, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import { post } from '../../utils/request'
-import Toast, { useToastEffect } from '../../components/Toast'
+import request from '@/utils/request/index'
+// import Toast, { useToastEffect } from '../../components/Toast'
 
 // 处理注册逻辑
-const useLoginEffect = (showToast) => {
+const useLoginEffect = () => {
   const router = useRouter()
   const data = reactive({ username: '', password: '' })
 
   const handleLogin = async () => {
-    try {
-      const result = await post('/api/user/login', {
-        username: data.username,
-        password: data.password
-      })
-      if (result?.errno === 0) {
-        localStorage.isLogin = true
-        router.push({ name: 'Home' })
-      } else {
-        showToast('登陆失败')
-      }
-    } catch (e) {
-      showToast('请求失败')
+    const result:any = await request({
+      url: '/api/user/login',
+      method: 'post',
+      params:{ username: data.username, password: data.password }
+    })
+    if (result?.errno === 0) {
+      localStorage.isLogin = true
+      router.push({ name: 'Home' })
     }
+
+  //  try {
+  //    const result = await request('/api/user/login', 'post', {
+  //      username: data.username,
+  //      password: data.password
+  //    })
+  //    if (result?.errno === 0) {
+  //      localStorage.isLogin = true
+  //      router.push({ name: 'Home' })
+  //    } else {
+  //      showToast('登陆失败')
+  //    }
+  //  } catch (e) {
+  //    showToast('请求失败')
+  //  }
   }
 
   const { username, password } = toRefs(data)
@@ -64,22 +73,25 @@ const useRegisterEffect = () => {
   return { handleRegisterClick }
 }
 
-export default {
+export default defineComponent({
   name: 'Login',
-  components: { Toast },
+
   // 职责就是告诉你，代码执行的一个流程
   setup () {
-    const { show, toastMessage, showToast } = useToastEffect()
-    const { username, password, handleLogin } = useLoginEffect(showToast)
+    // const { show, toastMessage, showToast } = useToastEffect()
+    const { username, password, handleLogin } = useLoginEffect()
     const { handleRegisterClick } = useRegisterEffect()
 
     return {
-      username, password, show, toastMessage,
+      username, password,
       handleLogin, handleRegisterClick,
     }
   }
-}
+}) 
 </script>
+
+
+
 
 <style lang="scss" scoped>
 @import '../../style/viriables.scss';

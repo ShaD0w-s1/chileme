@@ -9,9 +9,15 @@ function resolve(dir) {
 // 4. 后端重启后端服务
 // * 容易出问题的就是下面的配置
 module.exports = {
-  
-  publicPath: '/jingdong',
-  chainWebpack:(config)=>{
-    config.resolve.alias.set('@',resolve('./src'))
-  },
+  //VUE Cli
+  publicPath: '/chiLeMa',
+  lintOnSave: process.env.NODE_ENV !== 'production',
+  //WEBPACK
+  configureWebpack:{
+    resolve: {
+      alias: {
+        '@': resolve('src')
+      }
+    }
+  }
 }
