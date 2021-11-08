@@ -7,22 +7,26 @@ function instance () {
 
   // 创建axios实例
   const instance = axios.create({
-    baseURL: 'https://www.fastmock.site/mock/ae8e9031947a302fed5f92425995aa19/jd',
+    baseURL: 'https://www.fastmock.site/mock/2953d4a3dc818e999196430eef33ab1a/chileme',
     timeout:10000
   })
 
   // 请求拦截
-  instance.interceptors.request.use((config) => { // 
-    Promise.resolve(config)
+  instance.interceptors.request.use((config) => { 
+    console.log('请求发送')
+    return config
   },(error) => { // 失败则返回reject
-    Promise.reject(error)
+    console.log('请求错误')
+    return error
   })
 
   // 响应拦截
   instance.interceptors.response.use((res) => {
-    Promise.resolve(res)
+    console.log('响应收到')
+    return res
   },(error) => { // 失败则返回reject
-    Promise.reject(error)
+    console.log('请求错误')
+    return error
   })
 
   return instance

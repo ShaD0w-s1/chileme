@@ -50,7 +50,7 @@ import store from '@/store/index'
 
 // 处理用户名登录逻辑
 const userLoginEffect = () => {
-  // const router = useRouter()
+  const router = useRouter()
   const _ref = ref() 
   const data = reactive({ username: '', password: '' })
   const rules = reactive({
@@ -69,7 +69,7 @@ const userLoginEffect = () => {
     try {
       await _ref.value?.validate() // 验证拦截
       await store.dispatch('User/loginByUsername', data) // 登录
-
+      await router.push('/')
     } catch (err) {
       console.error(err)
     }
