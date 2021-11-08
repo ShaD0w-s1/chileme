@@ -1,5 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
+
+import { getCookie } from "@/utils/cookie"
+
 import Layout from '../views/layout/Layout.vue'
 
 const routes: Array<RouteRecordRaw> = [
